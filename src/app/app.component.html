@@ -1,0 +1,77 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+<div class="container-fluid">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>ProjectEmail:</label>
+      <input
+        [class.is-invalid]="
+          userForm.get('projectEmail').invalid &&
+          userForm.get('projectEmail').touched
+        "
+        type="email"
+        class="form-control"
+        formControlName="projectEmail"
+      />
+      <div *ngIf="(proEmail.invalid && proEmail.touched) || proEmail.dirty">
+        <small *ngIf="proEmail.errors?.required" class="text-danger"
+          >email is required</small
+        >
+
+        <small *ngIf="proEmail.errors?.pattern" class="text-danger"
+          >Enetr valid email address</small
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>ProjectName:</label>
+      <input
+        [class.is-invalid]="
+          userForm.get('projectName').invalid &&
+          userForm.get('projectName').touched
+        "
+        type="text"
+        class="form-control"
+        formControlName="projectName"
+      />
+
+      <div *ngIf="(proName.invalid && proName.touched) || proName.dirty">
+        <small *ngIf="proName.errors?.required" class="text-danger"
+          >name is required</small
+        >
+
+        <small *ngIf="proName.errors?.pattern" class="text-danger"
+          >name start with only
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phonenumber:</label>
+      <input
+        [class.is-invalid]="
+          userForm.get('phnumber').invalid && userForm.get('phnumber').touched
+        "
+        type="tel"
+        class="form-control"
+        formControlName="phnumber"
+      />
+
+      <div *ngIf="(proPhone.invalid && proPhone.touched) || proPhone.dirty">
+        <small *ngIf="proPhone.errors?.required" class="text-danger"
+          >number is required</small
+        >
+        <small *ngIf="proPhone.errors?.minlength" class="text-danger"
+          >number is short</small
+        >
+        <small *ngIf="proPhone.errors?.pattern" class="text-danger"
+          >number is invalid
+        </small>
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-primary" type="submit">submit</button>
+    </div>
+  </form>
+</div>
